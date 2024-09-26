@@ -12,5 +12,5 @@ provider "helm" {
 
 # Kubernetes Provider
 provider "kubernetes" {
-  config_path    = pathexpand("~/.kube/config")
+  config_path = pathexpand("~/.kube/config")
 }

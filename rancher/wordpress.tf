@@ -1,8 +1,8 @@
 resource "helm_release" "wordpress" {
-  namespace        = kubernetes_namespace.mojobooth.metadata.0.name
-  name             = "mojobooth"
-  repository       = "https://charts.bitnami.com/bitnami"
-  chart            = "wordpress"
+  namespace  = kubernetes_namespace.mojobooth.metadata.0.name
+  name       = "mojobooth"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart      = "wordpress"
 
   set {
     name  = "replicaCount"
@@ -31,7 +31,27 @@ resource "helm_release" "wordpress" {
 
   set {
     name  = "containerSecurityContext.enabled"
-    value = "false"
+    value = "true"
   }
-  
+
+  set {
+    name  = "wordpressUsername"
+    value = jsondecode(data.aws_secretsmanager_secret_version.mojobooth_current.secret_string)["wordpressUsername"]
+  }
+
+  set {
+    name  = "wordpressPassword"
+    value = jsondecode(data.aws_secretsmanager_secret_version.mojobooth_current.secret_string)["wordpressPassword"]
+  }
+
+  set {
+    name  = "mariadb.auth.rootPassword"
+    value = jsondecode(data.aws_secretsmanager_secret_version.mojobooth_current.secret_string)["mariadb.auth.rootPassword"]
+  }
+
+  set {
+    name  = "mariadb.auth.password"
+    value = jsondecode(data.aws_secretsmanager_secret_version.mojobooth_current.secret_string)["mariadb.auth.password"]
+  }
+
 }

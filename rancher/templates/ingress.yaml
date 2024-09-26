@@ -2,24 +2,24 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-    app: wordpress
-  name: mojobooth-ingress
-  namespace: mojobooth-wordpress
+    app: "${chart-name}"
+  name: "${app-name}-ingress"
+  namespace: "${namespace}"
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
+    cert-manager.io/cluster-issuer: "${cluster-issuer}"
 spec:
   rules:
-  - host: www2.mojobooth.co.uk
+  - host: "${endpoint-fqdn}"
     http:
       paths:
       - backend:
           service:
-            name: mojobooth-wordpress
+            name: "${app-name}-${chart-name}"
             port:
-              number: 80 # use appropriate port
+              number: 80
         path: /
         pathType: Prefix
   tls:
   - hosts:
-    - www2.mojobooth.co.uk
-    secretName: letsencrypt # secret name, same as the privateKeySecretRef in the (Cluster)Issuer
+    - "${endpoint-fqdn}"
+    secretName: "${cluster-issuer}" # secret name, same as the privateKeySecretRef in the (Cluster)Issuer
