@@ -1,7 +1,6 @@
 resource "helm_release" "wordpress" {
-  create_namespace = true
   namespace        = kubernetes_namespace.mojobooth.metadata.0.name
-  name             = "wordpress"
+  name             = "mojobooth"
   repository       = "https://charts.bitnami.com/bitnami"
   chart            = "wordpress"
 

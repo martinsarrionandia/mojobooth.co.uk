@@ -34,7 +34,7 @@ resource "kubernetes_persistent_volume" "wordpress_root" {
     }
   }
   spec {
-    storage_class_name = "amazon-ebs"
+    storage_class_name = data.terraform_remote_state.rancher-config.outputs.amazon-ebs-class
     capacity = {
       storage = "1Gi"
     }
@@ -42,6 +42,7 @@ resource "kubernetes_persistent_volume" "wordpress_root" {
     persistent_volume_source {
       aws_elastic_block_store { 
           volume_id = data.aws_ebs_volume.wordpress_root.id
+          fs_type = "ext4"
       }
     }
   }
@@ -54,7 +55,7 @@ resource "kubernetes_persistent_volume_claim" "wordpress_root" {
     namespace = kubernetes_namespace.mojobooth.metadata.0.name
   }
   spec {
-    storage_class_name = "amazon-ebs"
+    storage_class_name = data.terraform_remote_state.rancher-config.outputs.amazon-ebs-class
     access_modes = ["ReadWriteOnce"]
     resources {
       requests = {
@@ -74,7 +75,7 @@ resource "kubernetes_persistent_volume" "wordpress_maria" {
     }
   }
   spec {
-    storage_class_name = "amazon-ebs"
+    storage_class_name = data.terraform_remote_state.rancher-config.outputs.amazon-ebs-class
     capacity = {
       storage = "1Gi"
     }
@@ -82,6 +83,7 @@ resource "kubernetes_persistent_volume" "wordpress_maria" {
     persistent_volume_source {
       aws_elastic_block_store { 
           volume_id = data.aws_ebs_volume.wordpress_maria.id
+          fs_type = "ext4"
       }
     }
   }
@@ -93,7 +95,7 @@ resource "kubernetes_persistent_volume_claim" "wordpress_maria" {
     namespace = kubernetes_namespace.mojobooth.metadata.0.name
   }
   spec {
-    storage_class_name = "amazon-ebs"
+    storage_class_name = data.terraform_remote_state.rancher-config.outputs.amazon-ebs-class
     access_modes = ["ReadWriteOnce"]
     resources {
       requests = {
