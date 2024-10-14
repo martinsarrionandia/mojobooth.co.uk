@@ -1,0 +1,3 @@
+locals{
+    fqdn = var.domain
+}

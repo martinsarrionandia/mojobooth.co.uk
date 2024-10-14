@@ -15,6 +15,12 @@ resource "helm_release" "wordpress" {
   }
 
   set {
+    name  = "service.annotations.external-dns\\.alpha\\.kubernetes\\.io/hostname"
+    value = yamlencode(local.fqdn)
+    type = "string"
+  }
+
+  set {
     name  = "persistence.existingClaim"
     value = kubernetes_persistent_volume_claim.wordpress_root.metadata.0.name
   }
@@ -53,5 +59,4 @@ resource "helm_release" "wordpress" {
     name  = "mariadb.auth.password"
     value = jsondecode(data.aws_secretsmanager_secret_version.mojobooth_current.secret_string)["mariadb.auth.password"]
   }
-
 }

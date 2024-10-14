@@ -1,6 +1,6 @@
 # AWS Provider 
 provider "aws" {
-  region = "eu-west-2"
+  region = data.terraform_remote_state.rancher-infra.outputs.region
 }
 
 # Helm Provider

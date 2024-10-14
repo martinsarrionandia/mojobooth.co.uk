@@ -23,3 +23,19 @@ spec:
   - hosts:
     - "${endpoint-fqdn}"
     secretName: "${cluster-issuer}" # secret name, same as the privateKeySecretRef in the (Cluster)Issuer
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: wordpress-8443
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`"${endpoint-fqdn}"`)
+      kind: Rule
+      services:
+        - name: "${app-name}-${chart-name}"
+          port: 443
+  field_manager:
+    force_conflicts: true

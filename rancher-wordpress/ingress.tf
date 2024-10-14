@@ -15,7 +15,7 @@ resource "kubernetes_manifest" "mojobooth-ingress" {
     spec = {
       rules = [
         {
-          host = aws_route53_record.www_mojobooth.fqdn
+          host = local.fqdn
           http = {
             paths = [
               {
@@ -37,7 +37,7 @@ resource "kubernetes_manifest" "mojobooth-ingress" {
       tls = [
         {
           hosts = [
-            aws_route53_record.www_mojobooth.fqdn,
+            local.fqdn,
           ]
           secretName = data.terraform_remote_state.rancher-config.outputs.cluster-issuer
         },
