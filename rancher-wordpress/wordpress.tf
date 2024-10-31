@@ -1,8 +1,8 @@
 resource "helm_release" "wordpress" {
   namespace  = kubernetes_namespace.mojobooth.metadata.0.name
-  name       = "mojobooth"
-  repository = "https://charts.bitnami.com/bitnami"
-  chart      = "wordpress"
+  name       = var.release-name
+  repository = var.release-repo
+  chart      = var.release-chart
 
   set {
     name  = "replicaCount"
@@ -12,6 +12,12 @@ resource "helm_release" "wordpress" {
   set {
     name  = "service.type"
     value = "ClusterIP"
+  }
+
+  # Disable network policy as it will be created manually
+  set {
+    name  = "networkPolicy.enabled"
+    value = "false"
   }
 
   set {

@@ -4,7 +4,9 @@ resource "kubernetes_manifest" "mojobooth-ingress" {
     kind = "Ingress"
     metadata = {
       annotations = {
-        "cert-manager.io/cluster-issuer" = data.terraform_remote_state.rancher-config.outputs.cluster-issuer
+        "cert-manager.io/cluster-issuer" = data.terraform_remote_state.rancher-config.outputs.cluster-issuer,
+        "external-dns.alpha.kubernetes.io/hostname" = (local.fqdn),
+        "external-dns.alpha.kubernetes.io/target" = data.terraform_remote_state.rancher-infra.outputs.public-ip
       }
       labels = {
         app = helm_release.wordpress.metadata.0.chart
