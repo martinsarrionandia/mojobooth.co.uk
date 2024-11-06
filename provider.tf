@@ -1,6 +1,13 @@
 # AWS Provider 
 provider "aws" {
-  region = data.terraform_remote_state.rancher-infra.outputs.region
+  region = "eu-west-2"
+  default_tags {
+    tags = {
+      Environment = "Container"
+      Managedby   = "Terraform"
+      Rancher     = "True"
+    }
+  }
 }
 
 # Helm Provider
