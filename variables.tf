@@ -12,3 +12,13 @@ variable "release-name" {
   type    = string
   default = "mojobooth"
 }
+
+variable "additional-middlewares-map" {
+  type = list(map(string))
+  default = [
+    {
+      "name"      = "bouncer"
+      "namespace" = "traefik"
+    }
+  ]
+}
