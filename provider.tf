@@ -13,11 +13,11 @@ provider "aws" {
 # Helm Provider
 provider "helm" {
   kubernetes {
-    config_path = pathexpand("~/.kube/config")
+    config_path = local.kubectl-file
   }
 }
 
 # Kubernetes Provider
 provider "kubernetes" {
-  config_path = pathexpand("~/.kube/config")
+  config_path = local.kubectl-file
 }

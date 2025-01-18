@@ -1,3 +1,4 @@
 locals {
-  additional-middlewares = [data.terraform_remote_state.rancher-config.outputs.crowdsec-bouncer-middleware]
+  additional-middlewares = [data.kubernetes_config_map.aws-rancher-config.data["crowdsec-bouncer-middleware"]]
+  kubectl-file           = pathexpand("~/.kube/${var.kube-config-fqdn}")
 }

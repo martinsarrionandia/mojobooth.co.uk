@@ -13,12 +13,22 @@ variable "release-name" {
   default = "mojobooth"
 }
 
-variable "additional-middlewares-map" {
-  type = list(map(string))
-  default = [
-    {
-      "name"      = "bouncer"
-      "namespace" = "traefik"
-    }
-  ]
+variable "ebs-volname-wordpress-root" {
+  type    = string
+  default = "rancher-mojobooth-wordpress-root"
+}
+
+variable "ebs-volname-wordpress-mariadb" {
+  type    = string
+  default = "rancher-mojobooth-wordpress-maria"
+}
+
+variable "ebs-volname-wordpress-uploads" {
+  type    = string
+  default = "rancher-mojobooth-wordpress-uploads"
+}
+
+variable "kube-config-fqdn" {
+  type    = string
+  default = "rancher.sarrionandia.co.uk"
 }
