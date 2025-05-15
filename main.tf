@@ -6,7 +6,6 @@ module "mojobooth-cdn" {
 module "mojobooth-sendmail" {
   source            = "github.com/martinsarrionandia/tfmmod-aws-sendmail.git"
   domain            = var.domain
-  create-spf-record = var.create-spf-record
 }
 
 module "mojobooth-wordpress" {
