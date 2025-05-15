@@ -13,6 +13,11 @@ variable "release-name" {
   default = "mojobooth"
 }
 
+variable "release-version" {
+  type    = string
+  default = "22.4.20"
+}
+
 variable "ebs-volname-wordpress-root" {
   type    = string
   default = "rancher-mojobooth-wordpress-root"
@@ -32,3 +37,9 @@ variable "kube-config-fqdn" {
   type    = string
   default = "rancher.sarrionandia.co.uk"
 }
+
+variable "create-spf-record" {
+  type    = bool
+  default = true
+}
+

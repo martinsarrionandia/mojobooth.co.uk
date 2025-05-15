@@ -3,11 +3,17 @@ module "mojobooth-cdn" {
   domain = var.domain
 }
 
+module "mojobooth-sendmail" {
+  source            = "github.com/martinsarrionandia/tfmmod-aws-sendmail.git"
+  domain            = var.domain
+  create-spf-record = var.create-spf-record
+}
+
 module "mojobooth-wordpress" {
   source                        = "github.com/martinsarrionandia/tfmod-aws-k8s-wordpress.git"
   domain                        = var.domain
   release-name                  = var.release-name
-  initial-setup                 = true
+  initial-setup                 = false
   amazon-ebs-class              = data.kubernetes_config_map.aws-rancher-config.data["amazon-ebs-class"]
   public-ip                     = data.kubernetes_config_map.aws-rancher-config.data["public-ip"]
   ebs-volname-wordpress-root    = var.ebs-volname-wordpress-root
