@@ -4,8 +4,8 @@ module "mojobooth-cdn" {
 }
 
 module "mojobooth-sendmail" {
-  source            = "github.com/martinsarrionandia/tfmmod-aws-sendmail.git"
-  domain            = var.domain
+  source = "github.com/martinsarrionandia/tfmmod-aws-sendmail.git"
+  domain = var.domain
 }
 
 module "mojobooth-wordpress" {
