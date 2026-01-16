@@ -15,7 +15,7 @@ variable "release-name" {
 
 variable "release-version" {
   type    = string
-  default = "22.4.20"
+  default = null
 }
 
 variable "ebs-volname-wordpress-root" {
