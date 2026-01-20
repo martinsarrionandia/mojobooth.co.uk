@@ -11,16 +11,19 @@ module "mojobooth-sendmail" {
 module "mojobooth-wordpress" {
   source                        = "github.com/martinsarrionandia/tfmod-aws-k8s-wordpress.git"
   domain                        = var.domain
-  release-name                  = var.release-name
-  initial-setup                 = false
-  amazon-ebs-class              = data.kubernetes_config_map_v1.aws-rancher-config.data["amazon-ebs-class"]
-  public-ip                     = data.kubernetes_config_map_v1.aws-rancher-config.data["public-ip"]
-  ebs-volname-wordpress-root    = var.ebs-volname-wordpress-root
-  ebs-volname-wordpress-mariadb = var.ebs-volname-wordpress-mariadb
-  ebs-volname-wordpress-uploads = var.ebs-volname-wordpress-uploads
-  wordpress-credentials-arn     = var.wordpress-credentials-arn
-  cdn-s3-user-secret-arn        = module.mojobooth-cdn.secret-arn
-  cdn-bucket-name               = module.mojobooth-cdn.cdn-bucket-name
-  cluster-issuer                = data.kubernetes_config_map_v1.aws-rancher-config.data["cluster-issuer"]
-  additional-middlewares        = local.additional-middlewares
+  release_name                  = var.release_name
+  initial_setup                 = false
+  amazon_ebs_class              = data.kubernetes_config_map_v1.aws-rancher-config.data["amazon-ebs-class"]
+  public_ip                     = data.kubernetes_config_map_v1.aws-rancher-config.data["public-ip"]
+  ebs_volname_wordpress_root    = var.ebs_volname_wordpress_root
+  ebs_volname_wordpress_mariadb = var.ebs_volname_wordpress_mariadb
+  ebs_volname_wordpress_uploads = var.ebs_volname_wordpress_uploads
+  wordpress_credentials_arn     = var.wordpress_credentials_arn
+  cdn_s3_user_secret_arn        = module.mojobooth-cdn.secret-arn
+  cdn_bucket_name               = module.mojobooth-cdn.cdn-bucket-name
+  cluster_issuer                = data.kubernetes_config_map_v1.aws-rancher-config.data["cluster-issuer"]
+  additional_middlewares        = local.additional_middlewares
+  http_proxy_app                = data.kubernetes_config_map_v1.aws-rancher-config.data["http-proxy-app"]
+  http_proxy_namespace          = data.kubernetes_config_map_v1.aws-rancher-config.data["http-proxy-namespace"]
+  http_proxy_address            = data.kubernetes_config_map_v1.aws-rancher-config.data["http-proxy-address"]
 }

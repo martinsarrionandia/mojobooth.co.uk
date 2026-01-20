@@ -3,12 +3,12 @@ variable "domain" {
   default = "photobooth.wales"
 }
 
-variable "wordpress-credentials-arn" {
+variable "wordpress_credentials_arn" {
   type    = string
   default = "arn:aws:secretsmanager:eu-west-2:281287281094:secret:mojobooth.co.uk-NNUJeo"
 }
 
-variable "release-name" {
+variable "release_name" {
   type    = string
   default = "mojobooth"
 }
@@ -18,17 +18,17 @@ variable "release-version" {
   default = null
 }
 
-variable "ebs-volname-wordpress-root" {
+variable "ebs_volname_wordpress_root" {
   type    = string
   default = "rancher-mojobooth-wordpress-root"
 }
 
-variable "ebs-volname-wordpress-mariadb" {
+variable "ebs_volname_wordpress_mariadb" {
   type    = string
   default = "rancher-mojobooth-wordpress-maria"
 }
 
-variable "ebs-volname-wordpress-uploads" {
+variable "ebs_volname_wordpress_uploads" {
   type    = string
   default = "rancher-mojobooth-wordpress-uploads"
 }
