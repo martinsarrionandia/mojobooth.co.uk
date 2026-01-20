@@ -19,8 +19,8 @@ module "mojobooth-wordpress" {
   ebs_volname_wordpress_mariadb = var.ebs_volname_wordpress_mariadb
   ebs_volname_wordpress_uploads = var.ebs_volname_wordpress_uploads
   wordpress_credentials_arn     = var.wordpress_credentials_arn
-  cdn_s3_user_secret_arn        = module.mojobooth-cdn.secret-arn
-  cdn_bucket_name               = module.mojobooth-cdn.cdn-bucket-name
+  cdn_s3_user_secret_arn        = module.mojobooth-cdn.secret_arn
+  cdn_bucket_name               = module.mojobooth-cdn.cdn_bucket_name
   cluster_issuer                = data.kubernetes_config_map_v1.aws-rancher-config.data["cluster-issuer"]
   additional_middlewares        = local.additional_middlewares
   http_proxy_app                = data.kubernetes_config_map_v1.aws-rancher-config.data["http-proxy-app"]
