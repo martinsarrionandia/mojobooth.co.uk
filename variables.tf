@@ -33,13 +33,7 @@ variable "ebs_volname_wordpress_uploads" {
   default = "rancher-mojobooth-wordpress-uploads"
 }
 
-variable "kube-config-fqdn" {
+variable "kube_config_fqdn" {
   type    = string
   default = "rancher.sarrionandia.co.uk"
 }
-
-variable "create-spf-record" {
-  type    = bool
-  default = true
-}
-
