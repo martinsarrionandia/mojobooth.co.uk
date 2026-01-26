@@ -22,8 +22,7 @@ module "mojobooth-wordpress" {
   cdn_s3_user_secret_arn        = module.mojobooth-cdn.secret_arn
   cdn_bucket_name               = module.mojobooth-cdn.cdn_bucket_name
   cluster_issuer                = data.kubernetes_config_map_v1.aws-rancher-config.data["cluster-issuer"]
-  additional_middlewares        = local.additional_middlewares
-  http_proxy_app                = data.kubernetes_config_map_v1.aws-rancher-config.data["http-proxy-app"]
-  http_proxy_namespace          = data.kubernetes_config_map_v1.aws-rancher-config.data["http-proxy-namespace"]
-  http_proxy_address            = data.kubernetes_config_map_v1.aws-rancher-config.data["http-proxy-address"]
+  additional_middlewares_maps   = local.additional_middlewares_maps
+  http_proxy                    = local.http_proxy
+  wpadmin_ip_allowlist          = var.wpadmin_ip_allowlist
 }

@@ -37,3 +37,8 @@ variable "kube_config_fqdn" {
   type    = string
   default = "rancher.sarrionandia.co.uk"
 }
+
+variable "wpadmin_ip_allowlist" {
+  type    = list(string)
+  default = ["185.81.253.0/24"]
+}
