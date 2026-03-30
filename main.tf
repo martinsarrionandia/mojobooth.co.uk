@@ -12,6 +12,7 @@ module "mojobooth-wordpress" {
   source                        = "github.com/martinsarrionandia/tfmod-aws-k8s-wordpress.git"
   domain                        = var.domain
   release_name                  = var.release_name
+  release_version               = var.release_version
   initial_setup                 = false
   amazon_ebs_class              = data.kubernetes_config_map_v1.aws-rancher-config.data["amazon-ebs-class"]
   public_ip                     = data.kubernetes_config_map_v1.aws-rancher-config.data["public-ip"]

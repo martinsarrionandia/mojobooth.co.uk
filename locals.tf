@@ -5,4 +5,8 @@ locals {
   http_proxy = jsondecode(data.kubernetes_config_map_v1.aws-rancher-config.data["http-proxy"])
 
   kubectl_file = pathexpand("~/.kube/${var.kube_config_fqdn}")
+
+  artifacthub_wordpress = jsondecode(data.http.artifacthub_wordpress.response_body)
+
+  latest_helm_version = local.artifacthub_wordpress.version
 }

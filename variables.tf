@@ -13,9 +13,9 @@ variable "release_name" {
   default = "mojobooth"
 }
 
-variable "release-version" {
+variable "release_version" {
   type    = string
-  default = null
+  default = "29.2.8"
 }
 
 variable "ebs_volname_wordpress_root" {
